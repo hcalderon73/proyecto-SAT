@@ -1,0 +1,39 @@
+<ion-view view-title="Configuración">
+	<!-- do you want padding? -->
+	<ion-content class="padding">
+		<div class="list">
+			<p class="text-danger" ng-repeat="error in ctrl.errorValidation">{{error}}</p>
+			<label class="item item-input item-stacked-label"> <span class="input-label">URL</span>
+				<input type="text" placeholder="url" ng-model="ctrl.url" required>
+			</label>
+			<label class="item item-input item-stacked-label"> <span class="input-label">Lapso Sincronización (minutos)</span>
+				<input type="number" placeholder="lapso" ng-model="ctrl.lapsoSinc">
+			</label>
+			<div class="item item-stacked-label item-toggle">
+		     <span>Actualizar stock al generar parte</span> {{ctrl.refrescarStock}}
+		     <label class="toggle toggle-balanced">
+		       <input type="checkbox" ng-checked="ctrl.refrescarStock" ng-model="ctrl.refrescarStock">
+		       <div class="track">
+		         <div class="handle"></div>
+		       </div>
+		     </label>
+		  </div>
+		  <div class="item item-toggle">
+		     Informar hora Inicio/Fin en MO {{ctrl.horasDesglosadas}}
+		     <label class="toggle toggle-balanced">
+		       <input type="checkbox" ng-checked="ctrl.horasDesglosadas" ng-model="ctrl.horasDesglosadas">
+		       <div class="track">
+		         <div class="handle"></div>
+		       </div>
+		     </label>
+		  </div>		  
+		  <label class="item item-input item-stacked-label"> <span class="input-label">Email</span>
+				<input type="text" placeholder="correo@electronico.com" ng-model="ctrl.email">
+			</label>
+			<label class="item item-input item-stacked-label"> <span class="input-label">Contraseña</span>
+				<input type="password" placeholder="Password" ng-model="ctrl.password">
+			</label>			
+			<button class="button button-block button-positive" ng-click="ctrl.guardar()">Guardar</button>
+		</div>		
+	</ion-content>
+</ion-view>

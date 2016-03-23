@@ -1,0 +1,63 @@
+<ion-view view-title="Datos de Avisos {{avisoId}}">
+	<ion-content class="padding">
+
+		<div class="list">
+
+			<div class="item item-divider">
+				Datos del Aviso {{avisoId}}
+			</div>
+			<div class="item">
+				<small>Descripción</small>
+				<p>
+					{{aviso.Descripcion}}
+				</p>
+			</div>
+			<a class="item" href="#"> 
+				<small>Comentarios</small> 
+				<p>{{aviso.Comentarios}}</p>   
+			</a>
+			<div class="item">
+				<small>Obra</small>
+				<p>{{aviso.DescripcionObra}}</p>				 
+			</div>
+			<div class="item">
+				<small>Tipo Aviso</small>
+				<p>{{aviso.DescripcionTipo}}</p>				 
+			</div>
+			<div class="item">
+				<small>Estado</small>
+				<p>{{aviso.DescripcionEstado}}</p>				 
+			</div>
+			<div class="item">
+				<small>Empleado Origen</small>
+				<p>{{aviso.NombreEmpleadoOrigen}}</p>
+				 
+			</div>
+			<div class="item">
+				<small>Empleado Destino</small>
+				<p>{{aviso.NombreEmpleado}}</p>
+				 
+			</div>
+			<div class="item">
+				<small>Empleado responsable</small>
+				<p>{{aviso.NombreResponsable}}</p>
+				 
+			</div>
+			<div class="item">
+				<small>Fecha/hora recepción</small>
+				<p>{{aviso.FechaRecepcion}}</p>
+				 
+			</div>
+			<div class="item">
+				<small>Fecha/hora prevista</small>
+				<p>{{aviso.FechaPrevista}}</p>
+				 
+			</div>
+			<div class="item">
+				<small>Tiempo Trabajado</small>
+				<p>{{aviso.TiempoTrabajo}}</p>
+				 
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
