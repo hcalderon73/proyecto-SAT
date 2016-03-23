@@ -1,6 +1,12 @@
 <ion-view view-title="Home">
 	<!-- do you want padding? -->
 	<ion-content class="padding">
-		<h1>Home</h1>
+        <ion-list>
+            <a class="item item-icon-left" ui-sref="{{item.url}}" ng-repeat="item in ctrl.lista">
+                <i class="icon {{item.icon}}"></i>
+                {{item.title}}
+                <span ng-if="item.badge" class="badge badge-assertive">{{item.badge}}</span>
+            </a>
+        </ion-list>
 	</ion-content>
 </ion-view>

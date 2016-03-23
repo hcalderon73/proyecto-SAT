@@ -45,7 +45,7 @@ angular.module('main', [
     views: {
       'menuContent': {
         templateUrl: 'main/templates/home/home.html',
-        controller: 'HomeCtrl as model'
+        controller: 'HomeCtrl as ctrl'
       }
     }
   })
