@@ -1,41 +1,37 @@
 <ion-view view-title="Descarga de Datos">
 	<!-- do you want padding? -->
 	<ion-content class="padding">
-	<p>{{crtl.status}}</p>
-		<div class="row header">
-			<div class="col">
-				Nombre
-			</div>
-			<div class="col">
-				Finalizado
-			</div>
-			<div class="col">
-				Correcto
-			</div>
-			<div class="col">
-				Descargar
-			</div>
-		</div>
-		<div class="row content" ng-repeat="item in ctrl.items">
-			<div class="col nombre" style="text-align: left">
-				{{item.titulo}}
-			</div>
-			<div class="col"><i ng-class="{'ion-close-circled red': item.finalizado === false, 'ion-checkmark-circled green': item.finalizado === true}"></i></div>
-			<div class="col"><i ng-class="{'ion-close-circled red': item.correcto === false, 'ion-checkmark-circled green': item.correcto === true}"></i></div>
-			<div class="col">
-				<button ng-disabled="crtl.auto" class="button button-small button-light button-block icon ion-ios-cloud-download" ng-class="{'button-assertive': item.descargar === false, 'button-balanced': item.descargar === true}" ng-click="ctrl.downloadData(item)">
-					
-				</button>
-			</div>
-		</div>
-		<div class="row">
-			<button class="button button-full button-positive icon ion-ios-cloud-download" ng-click="ctrl.downloadAllData()">
-			  Descargar Todos
-			</button>			
-		</div>
+        <ion-list>
+            <div class="row content item" ng-repeat="item in ctrl.items">
+                <div class="col nombre col-50" style="text-align: left">
+                    <p>{{item.titulo}}</p>
+                </div>
+                <div class="col check">
+                    <p ng-class="{'false': item.finalizado === false, 'true': item.finalizado === true}"><i ng-class="{'ion-close-circled red': item.finalizado === false, 'ion-checkmark-circled green': item.finalizado === true}"></i> Finalizado</p>
+                    <p ng-class="{'false': item.correcto === false, 'true': item.correcto === true}"><i ng-class="{'ion-close-circled red': item.correcto === false, 'ion-checkmark-circled green': item.correcto === true}"></i> Correcto</p>
+                </div>
+                <div class="col">
+                    <button ng-disabled="crtl.auto" class="col button button-small button-block button-light icon ion-ios-cloud-download button-balanced" ng-click="ctrl.downloadData(item)">
+
+                    </button>
+                </div>
+            </div>
+            <div class="item item-positive row">
+                <button class="button button-full button-positive icon ion-ios-cloud-download" ng-click="ctrl.downloadAllData()">
+                    Descargar Todos
+                </button>
+            </div>
+        </ion-list>
 	</ion-content>
 </ion-view>
 <style>
+    .check > p.false {
+        color: #d1d3d6;
+    }
+
+    .check > p.true {
+        color: #333;
+    }
 	.green {
 		color: #33cd5f;
 	}
@@ -48,11 +44,7 @@
 		background: #ddd;
 	}
 
-	.content > .col {
-		text-align: center;
-		border: #eee 1px solid;
-		background: #fbfbfb;
-	}
+
 	
 	.content > .col.nombre {
 		    text-align: left;
@@ -60,14 +52,7 @@
 		    white-space: nowrap;
 		    overflow: hidden;
 	}
-	
-	.content > .col > .button-small {
-	    padding: 0px 0px 0px;
-	    min-width: 28px;
-	    min-height: 15px;
-	    font-size: 10px;
-	    line-height: 15px;
-	}
+
 	
 	
 	.content > .col > .button.button-block, .button.button-full {

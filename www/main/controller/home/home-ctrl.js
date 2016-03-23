@@ -1,6 +1,5 @@
 angular.module('main')
 .controller('HomeCtrl', function () {
-
     this.Avisos = JSON.parse(localStorage.avisos);
     this.numeroAvisos = Object.keys(this.Avisos).length;
 
@@ -11,6 +10,13 @@ angular.module('main')
         icon: 'ion-android-alarm-clock',
         url: 'sat.avisos',
         badge: this.numeroAvisos
+      },
+      {
+        title: 'Cambiar Estados',
+        nombre: 'cambiar_estados',
+        icon: 'ion-arrow-swap',
+        url: 'sat.mapa',
+        badge: null
       },
       {
         title: 'Mapa de Avisos',
