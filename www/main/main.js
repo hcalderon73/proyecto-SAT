@@ -14,7 +14,7 @@ angular.module('main', [
       $state.go('sat.config'); // go to login
     } else {
       console.log("ONLINE");
-      $state.go('sat.descarga');
+      $state.go('sat.home');
     }
 
     if (ionic.Platform.isAndroid()) {
