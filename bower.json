@@ -11,6 +11,8 @@
     "animo.js": "animo#^1.0.3",
     "jquery": "^2.2.2",
     "font-awesome": "^4.5.0",
-    "angular-ui-router": "ui-router#^0.2.18"
+    "angular-ui-router": "ui-router#^0.2.18",
+    "angular-moment": "^0.10.3",
+    "moment": "^2.12.0"
   }
 }

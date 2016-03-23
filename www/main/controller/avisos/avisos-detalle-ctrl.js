@@ -3,8 +3,19 @@ angular.module('main').controller('AvisoDetalleCtrl', function ($scope, $statePa
   
   $scope.avisoId = $stateParams.avisoId;
   $scope.avisos = angular.fromJson(localStorage.avisos);
-  $scope.avisoSelecionado = _.filter($scope.avisos, {Codigo: Number($stateParams.avisoId)});
-  $scope.aviso = $scope.avisoSelecionado[0];
+  $scope.detalleAviso = _.filter($scope.avisos, {Codigo: Number($stateParams.avisoId)});
+  $scope.aviso = $scope.detalleAviso[0];
   console.log($scope.aviso);
+
+  $scope.aviso.FechaPrevista = new Date($scope.aviso.FechaPrevista);
+  $scope.aviso.FechaRecepcion = new Date($scope.aviso.FechaRecepcion);
+
+  $scope.seleccionar = function (aviso) {
+
+
+
+  };
+
+
   
 });

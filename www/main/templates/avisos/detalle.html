@@ -1,80 +1,68 @@
 <ion-view view-title="Datos de Avisos {{avisoId}}">
 	<ion-content class="padding detalleAviso">
-
 		<div class="list aviso">
-
 			<div class="item item-divider">
 				Datos del Aviso {{avisoId}}
 			</div>
 			<div class="item">
 				<small>Descripción</small>
-				<p>
-					{{aviso.Descripcion}}
-				</p>
+				{{aviso.Descripcion}}
 			</div>
 			<a class="item" href="#"> 
 				<small>Comentarios</small> 
-				<p>{{aviso.Comentarios}}</p>   
+				{{aviso.Comentarios}}   
 			</a>
 			<div class="item">
 				<small>Obra</small>
-				<p>{{aviso.DescripcionObra}}</p>
+				{{aviso.DescripcionObra}}
 			</div>
 			<div class="item">
 				<small>Tipo Aviso</small>
-				<p>{{aviso.DescripcionTipo}}</p>
+				{{aviso.DescripcionTipo}}
 			</div>
 			<div class="item">
 				<small>Estado</small>
-				<p>{{aviso.DescripcionEstado}}</p>				 
+				{{aviso.DescripcionEstado}}				 
 			</div>
 			<div class="item">
 				<small>Empleado Origen</small>
-				<p>{{aviso.NombreEmpleadoOrigen}}</p>
+				{{aviso.NombreEmpleadoOrigen}}
 			</div>
 			<div class="item">
 				<small>Empleado Destino</small>
-				<p>{{aviso.NombreEmpleado}}</p>
+				{{aviso.NombreEmpleado}}
 			</div>
 			<div class="item">
 				<small>Empleado responsable</small>
-				<p>{{aviso.NombreResponsable}}</p>
+				{{aviso.NombreResponsable}}
 			</div>
 			<div class="item">
 				<small>Fecha/hora recepción</small>
-				<p>{{aviso.FechaRecepcion}}</p>
+                {{aviso.FechaRecepcion | amDateFormat:'DD/MM/YYYY HH:mm:ss '}}
 			</div>
 			<div class="item">
 				<small>Fecha/hora prevista</small>
-				<p>{{aviso.FechaPrevista}}</p>
+                {{aviso.FechaPrevista | amDateFormat:'DD/MM/YYYY HH:mm:ss '}}
 			</div>
 			<div class="item">
 				<small>Tiempo Trabajado</small>
-				<p>{{aviso.TiempoTrabajo}}</p>
+				{{aviso.TiempoTrabajo}}
 			</div>
 		</div>
 	</ion-content>
     <div class="bar bar-footer disable-user-behavior">
-        <button class="button button-balanced col col-25" ng-click="seleccionar()" style="
-    border-radius: 6px 0px 0px 6px;
-">Seleccionar</button>
-        <button class="button button-positive col col-25" ng-click="crear()" style="
-    border-radius: 0;
-">Crear Aviso Relacionado</button>
-        <button class="button button-energized col col-25" ng-click="cambio()" style="
-    border-radius: 0;
-">Cambio Estado</button>
-        <button class="button button-calm col col-25" ng-click="gestor()" style="
-    border-radius: 0px 6px 6px 0px;
-">Gestor Documental</button>
-        </div>
+        <button class="button button-balanced col col-25" ui-sref="sat.aviso({avisoId: aviso.Codigo})" style="border-radius: 6px 0px 0px 6px;">Seleccionar</button>
+        <button class="button button-positive col col-25" ng-click="crear()" style="    border-radius: 0;">Crear Aviso Relacionado</button>
+        <button class="button button-energized col col-25" ng-click="cambio()" style="    border-radius: 0;">Cambio Estado</button>
+        <button class="button button-calm col col-25" ng-click="gestor()" style="    border-radius: 0px 6px 6px 0px;">Gestor Documental</button>
+    </div>
 </ion-view>
 <style>
 .detalleAviso {
     margin-bottom: 50px;
 }
 
-.list > .item {
+.list.aviso > .item {
     border-color: #ddd;
     background-color: #fff;
     color: #444;

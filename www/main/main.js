@@ -3,32 +3,36 @@ angular.module('main', [
   'ngCordova',
   'ui.router',
   'uiGmapgoogle-maps',
-  'satellizer'
+  'satellizer',
+  'angularMoment'
   ])
 
-.run(function($ionicPlatform, $auth, $state) {
+.run(function($ionicPlatform, $auth, $state, amMoment) {
 
-  $ionicPlatform.ready(function() {
-    if (localStorage.url === null || localStorage.lapsoSinc === null || !$auth.isAuthenticated()) {
-      console.log("OFFLINE");
-      $state.go('sat.config'); // go to login
-    } else {
-      console.log("ONLINE");
-      $state.go('sat.home');
-    }
 
-    if (ionic.Platform.isAndroid()) {
-      console.log('usas un android !');
-    }
+    amMoment.changeLocale('es');
 
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
-    }
-    if (window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
+    $ionicPlatform.ready(function() {
+      if (localStorage.url === null || localStorage.lapsoSinc === null || !$auth.isAuthenticated()) {
+        console.log("OFFLINE");
+        $state.go('sat.config'); // go to login
+      } else {
+        console.log("ONLINE");
+        $state.go('sat.home');
+      }
+
+      if (ionic.Platform.isAndroid()) {
+        console.log('usas un android !');
+      }
+
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
+      }
+      if (window.StatusBar) {
+        StatusBar.styleDefault();
+      }
+    });
 })
 
 .config(function ($stateProvider, $urlRouterProvider, $provide) {
@@ -82,6 +86,24 @@ angular.module('main', [
       'menuContent': {
         templateUrl: 'main/templates/avisos/detalle.html',
         controller: 'AvisoDetalleCtrl as ctrl'
+      }
+    }
+  })
+  .state('sat.aviso', {
+    url: '^/aviso/{avisoId}',
+    views: {
+      'menuContent': {
+        templateUrl: 'main/templates/avisos/aviso/aviso.html',
+        controller: 'AvisoCtrl as ctrl'
+      }
+    }
+  })
+  .state('sat.gestion_documental', {
+    url: '^/aviso/gestion_documental',
+    views: {
+      'menuContent': {
+        templateUrl: 'main/templates/avisos/aviso/gestion_documental.html',
+        controller: 'GestionDocumentalCtrl as ctrl'
       }
     }
   })
