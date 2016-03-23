@@ -40,6 +40,15 @@ angular.module('main', [
     templateUrl: 'main/templates/menu.html',
     controller: 'MenuCtrl'
   })
+  .state('sat.home', {
+    url: '^/home',
+    views: {
+      'menuContent': {
+        templateUrl: 'main/templates/home/home.html',
+        controller: 'HomeCtrl as model'
+      }
+    }
+  })
   .state('sat.mapa', {
     url: '^/mapa',
     views: {
