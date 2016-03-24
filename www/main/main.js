@@ -7,8 +7,15 @@ angular.module('main', [
   'angularMoment'
   ])
 
-.run(function($ionicPlatform, $auth, $state, amMoment) {
-
+.run(function($ionicPlatform, $auth, $state, amMoment, $rootScope, $sanitize) {
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams){
+        console.log(toState.name);
+        console.log(toParams);
+        console.log(fromState.name);
+        console.log(fromParams);
+        console.log($sanitize);
+      });
 
     amMoment.changeLocale('es');
 

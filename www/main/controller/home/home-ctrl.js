@@ -11,7 +11,7 @@ angular.module('main')
         url: 'sat.avisos',
         badge: this.numeroAvisos
       },
-      {
+      /*{
         title: 'Cambiar Estados',
         nombre: 'cambiar_estados',
         icon: 'ion-arrow-swap',
@@ -45,7 +45,7 @@ angular.module('main')
         icon: 'ion-android-people',
         url: 'sat.mapa',
         badge: null
-      },
+      },*/
       {
         title: 'Ver Pendientes',
         nombre: 'ver_pendientes',
