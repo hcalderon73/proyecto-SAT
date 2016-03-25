@@ -1,0 +1,59 @@
+<ion-view view-title="Crear Nuevo Aviso">
+	<ion-content class="padding">
+        <div class="list list-inset">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Descripción</span>
+                <input type="text" placeholder="Descripción Aviso">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Comentario</span>
+                <input type="text" placeholder="Agregar Comentario">
+            </label>
+            <div class="item item-icon-right ion-briefcase"  href="#"  ng-click="OpcionesCliente()">
+                <span ng-if="!clienteSelecionado">Cliente</span><span ng-if="clienteSelecionado">{{clienteSelecionado[0].razonSocial}}</span>
+            </div>
+            <div ng-if="clienteSelecionado"  class="item item-icon-right ion-android-notifications"  href="#"  ng-click="OpcionesDireccion()">
+                <span ng-if="!direccionSeleccionada">Direcciones</span><span ng-if="direccionSeleccionada">{{direccionSeleccionada[0].nombre}}</span>
+            </div>
+            <div class="item item-icon-right ion-android-notifications"  href="#"  ng-click="OpcionesTiposAviso()">
+                <span ng-if="!tipoAvisoSeleccionado">Tipos de Aviso</span><span ng-if="tipoAvisoSeleccionado">{{tipoAvisoSeleccionado[0].Descripcion}}</span>
+            </div>
+            <div class="item item-icon-right ion-android-checkbox-outline"  href="#"  ng-click="OpcionesEstados()">
+                <span ng-if="!estadoSeleccionado">Estado</span><span ng-if="estadoSeleccionado">{{estadoSeleccionado[0].Descripcion}}</span>
+            </div>
+            <div class="item item-icon-right ion-person"  href="#"  ng-click="OpcionesEmpleadoDestino()">
+                <span ng-if="!empleadoDestinoSeleccionado">Empleado Destino</span><span ng-if="empleadoDestinoSeleccionado">{{empleadoDestinoSeleccionado[0].Nombre}}</span>
+            </div>
+            <div class="item item-icon-right ion-person"  href="#"  ng-click="OpcionesEmpleadoResponsable()">
+                <span ng-if="!empleadoResponsableSeleccionado">Empleado Responsable</span><span ng-if="empleadoResponsableSeleccionado">{{empleadoResponsableSeleccionado[0].Nombre}}</span>
+            </div>
+            <a class="item item-icon-right ion-calendar"  href="#" ng-click="openDatePicker()">
+                <span ng-if="!fechaPrevista">Fecha Prevista</span><span ng-if="fechaPrevista">Fecha prevista {{fechaPrevista | amDateFormat:'DD/MM/YYYY'}}</span>
+            </a>
+            <ionic-timepicker input-obj="timePickerObject">
+                <a class="item item-icon-right ion-clock">
+                    <standard-time-meridian etime='timePickerObject.inputEpochTime'><span ng-if="!horaPrevista">Hora Prevista</span><span ng-if="horaPrevista">Hora prevista {{horaPrevista}}</span></standard-time-meridian>
+                </a>
+            </ionic-timepicker>
+            <button class="button button-block button-positive" ng-click="guardarAviso()">Guardar</button>
+        </div>
+	</ion-content>
+</ion-view>
+
+<script id="contact-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar>
+            <h1 class="title">{{title}}</h1>
+            <button class="button button-outline button-stable" ng-click="closeModal()">
+                Cerrar
+            </button>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <a class="item" ng-repeat="item in data" ng-click="select(item.id, tipo)">
+                    {{item.name}}
+                </a>
+            </div>
+        </ion-content>
+    </div>
+</script>

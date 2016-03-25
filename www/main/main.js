@@ -4,19 +4,41 @@ angular.module('main', [
   'ui.router',
   'uiGmapgoogle-maps',
   'satellizer',
-  'angularMoment'
+  'angularMoment',
+  'ionic-datepicker',
+  'ionic-timepicker'
   ])
 
-.run(function($ionicPlatform, $auth, $state, amMoment, $rootScope, $sanitize) {
-    $rootScope.$on('$stateChangeStart',
+.config(function (ionicDatePickerProvider) {
+    var datePickerObj = {
+      inputDate: new Date(),
+      setLabel: 'Ok',
+      todayLabel: 'Hoy',
+      closeLabel: 'Cerrar',
+      mondayFirst: false,
+      weeksList: ["D", "L", "M", "M", "J", "V", "S"],
+      monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+      templateType: 'popup',
+      from: new Date(2012, 8, 1),
+      to: new Date(2018, 8, 1),
+      showTodayButton: true,
+      dateFormat: 'dd MMMM yyyy',
+      closeOnSelect: false,
+      disableWeekdays: [6]
+    };
+    ionicDatePickerProvider.configDatePicker(datePickerObj);
+  })
+
+
+.run(function($ionicPlatform, $auth, $state, amMoment, $rootScope, $cordovaSQLite) {
+   /* $rootScope.$on('$stateChangeStart',
       function(event, toState, toParams, fromState, fromParams){
         console.log(toState.name);
         console.log(toParams);
         console.log(fromState.name);
         console.log(fromParams);
-        console.log($sanitize);
       });
-
+*/
     amMoment.changeLocale('es');
 
     $ionicPlatform.ready(function() {
@@ -39,6 +61,41 @@ angular.module('main', [
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+
+      var dbOptions = {
+        name: 'Sat',
+        tables: [
+          {
+            name: 'new_aviso',
+            columns: [
+              {name: 'id', type: 'integer primary key'},
+              {name: 'descripcion', type: 'text'},
+              {name: 'comentarios', type: 'text'},
+              {name: 'cliente', type: 'text'},
+              {name: 'tipos_avisos', type: 'text'},
+              {name: 'estado', type: 'text'},
+              {name: 'empleado_destino', type: 'text'},
+              {name: 'empleado_responsable', type: 'text'},
+              {name: 'fecha_prevista', type: 'text'},
+              {name: 'hora_prevista', type: 'text'},
+              {name: 'fecha_creacion', type: 'text'},
+            ]
+          }
+        ]
+      };
+
+      $rootScope.db = $cordovaSQLite.openDB(dbOptions.name);
+      angular.forEach(dbOptions.tables, function(table) {
+        var columns = [];
+
+        angular.forEach(table.columns, function(column) {
+          columns.push(column.name + ' ' + column.type);
+        });
+        var query = 'CREATE TABLE IF NOT EXISTS ' + table.name + ' (' + columns.join(',') + ')';
+        //self.query(query);
+        alert('Table ' + table.name + ' initialized');
+      });
+      //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS joke(id integer primary key, joke text)");
     });
 })
 
@@ -50,6 +107,15 @@ angular.module('main', [
     abstract: true,
     templateUrl: 'main/templates/menu.html',
     controller: 'MenuCtrl'
+  })
+  .state('sat.nuevo_aviso', {
+    url: '^/nuevo_aviso',
+    views: {
+      'menuContent': {
+        templateUrl: 'main/templates/avisos/nuevo_aviso.html',
+        controller: 'NuevoAvisoCtrl'
+      }
+    }
   })
   .state('sat.home', {
     url: '^/home',

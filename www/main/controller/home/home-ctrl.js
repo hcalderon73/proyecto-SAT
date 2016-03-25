@@ -24,15 +24,15 @@ angular.module('main')
         icon: 'ion-android-pin',
         url: 'sat.mapa',
         badge: null
-      },
+      },*/
       {
         title: 'Nuevo Aviso',
         nombre: 'nuevo_avisos',
         icon: 'ion-android-add-circle',
-        url: 'sat.mapa',
+        url: 'sat.nuevo_aviso',
         badge: null
       },
-      {
+      /*{
         title: 'Alta Parte',
         nombre: 'alta_partes',
         icon: 'ion-android-clipboard',

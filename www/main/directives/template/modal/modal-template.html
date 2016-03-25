@@ -1,0 +1,18 @@
+<script id="contact-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar>
+            <h1 class="title">{{title}}</h1>
+            <button class="button button-outline button-stable" ng-click="closeModal()">
+                Cerrar
+            </button>
+        </ion-header-bar>
+        {{data}}
+        <ion-content>
+            <div class="list">
+                <a class="item" ng-repeat="item in data" ng-click="select(item.id, tipo)">
+                    {{item.name}}
+                </a>
+            </div>
+        </ion-content>
+    </div>
+</script>
