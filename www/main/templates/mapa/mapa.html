@@ -1,17 +1,12 @@
 <ion-view view-title="Mapa">
 	<!-- do you want padding? -->
 	<ion-content class="map-container">
-		<ui-gmap-google-map center='model.map.center' zoom='model.map.zoom'>
+        <ui-gmap-google-map center='model.map.center' zoom='model.map.zoom'>
+            <ui-gmap-marker coords="model.marker.coords" options="model.marker.options" events="model.marker.events" idkey="model.marker.id">
+            </ui-gmap-marker>
 
-                 <ui-gmap-marker ng-repeat="marker in model.markers"
-                    coords="marker.coords"
-                    options="marker.options"
-                    idkey="marker.id"
-                    events="marker.events"
-                    >
-                </ui-gmap-marker>
-            </ui-gmap-google-map>
-	</ion-content>
+           </ui-gmap-google-map>
+    </ion-content>
 </ion-view>
 <style>
 	.map-container .scroll {

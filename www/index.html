@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
-	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline';  *.azure-mobile.net http://localhost:1337 http://ajax.aspnetcdn.com">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.css">
@@ -46,6 +46,8 @@
     <script src="main/controller/avisos/nuevo-aviso-ctrl.js"></script>
     <script src="main/controller/avisos/aviso/aviso-ctrl.js"></script>
     <script src="main/controller/avisos/aviso/gestion-documental-ctrl.js"></script>
+    <script src="main/controller/avisos/aviso/aviso-relacionado-ctrl.js"></script>
+    <script src="main/controller/avisos/aviso/aviso-partes-ctrl.js"></script>
     <script src="main/services/test-service.js"></script>
     <script src="main/services/avisos-service.js"></script>
     <script src="main/services/database.js"></script>

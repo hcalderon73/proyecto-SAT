@@ -6,7 +6,7 @@
                 Cambiar Estados del Aviso
                 <span ng-if="item.badge" class="badge badge-assertive">{{item.badge}}</span>
             </a>
-            <a class="item item-icon-left" ui-sref="{{item.url}}" ng-repeat="item in lista" ng-click="{{item.action}}">
+            <a class="item item-icon-left" ui-sref="{{item.url}}" ng-repeat="item in lista">
                 <i class="icon {{item.icon}}"></i>
                 {{item.title}}
                 <span ng-if="item.badge" class="badge badge-assertive">{{item.badge}}</span>

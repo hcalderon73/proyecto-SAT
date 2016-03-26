@@ -1,0 +1,168 @@
+
+<ion-view view-title="Entrada de Partes">
+
+    <div class="tabs-striped tabs-top tabs-color-calm">
+        <div class="tabs">
+            <a class="tab-item" ng-class="{'active': statusObservaciones == true}" ng-click="onObservaciones()">
+                <i class="icon ion-edit"></i>
+                Test
+            </a>
+            <a class="tab-item" ng-class="{'active': statusManoObra == true}" href="#" ng-click="onManoObra()">
+                <i class="icon ion-person"></i>
+                Favorites
+            </a>
+            <a class="tab-item" ng-class="{'active': statusGasto == true}" href="#" ng-click="onGasto()">
+                <i class="icon ion-social-euro"></i>
+                Settings
+            </a>
+            <a class="tab-item" ng-class="{'active': statusMaterial == true}" href="#" ng-click="onMaterial()">
+                <i class="icon ion-settings"></i>
+                Settings
+            </a>
+        </div>
+    </div>
+	<ion-content style="margin-top: 4em" class="padding">
+        <div class="list" id="observaciones" ng-if="statusObservaciones" >
+            <div class="item item-divider">
+                Observaciones
+            </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Observación</span>
+                <input type="text" placeholder="Introduzca una observación">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Referencia</span>
+                <input type="text" placeholder="Referencia del parte">
+            </label>
+            <a class="item"  href="#" ng-click="openDatePicker()">
+                <span ng-if="!fechaPrevista">Fecha</span><span ng-if="fechaPrevista">Fecha {{fechaPrevista | amDateFormat:'DD/MM/YYYY'}}</span>
+            </a>
+            <div class="item item-divider">
+                Seleccione el tipo de parte
+            </div>
+            <ion-radio ng-model="choice" ng-value="'A'">Parte de Administración</ion-radio>
+            <ion-radio ng-model="choice" ng-value="'B'">Parte de Obra</ion-radio>
+
+            <button class="button button-full button-balanced">
+                Confirmar Parte
+            </button>
+        </div>
+        <div id="mano_obra" ng-if="statusManoObra" class="list">
+            <div class="item item-divider">
+                Mano de Obra
+            </div>
+            <div class="item item-icon-right ion-person"  href="#"  ng-click="OpcionesEmpleado()">
+                <span ng-if="!empleadoSeleccionado">Empleado</span><span ng-if="empleadoSeleccionado">{{empleadoSeleccionado[0].Nombre}}</span>
+            </div>
+            <ion-checkbox ng-model="linea.imputar">Imputar a todos los empleados</ion-checkbox>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Concepto</span>
+                <input type="text" ng-model="linea.concepto" placeholder="Introduzca un concepto">
+            </label>
+            <div class="item item-icon-right ion-clock"  href="#"  ng-click="OpcionesHora()">
+                <span ng-if="!horaSeleccionado">Tipo de Hora</span><span ng-if="horaSeleccionado">{{horaSeleccionado[0].descripcion}}</span>
+            </div>
+            <ionic-timepicker input-obj="timePickerObject">
+                <a class="item item-icon-right ion-clock">
+                    <standard-time-meridian etime='timePickerObject.inputEpochTime'><span ng-if="!horaPrevista">Horas</span><span ng-if="horaPrevista">Hora {{horaPrevista}}</span></standard-time-meridian>
+                </a>
+            </ionic-timepicker>
+
+            <button class="button button-full button-energized" ng-click="addLinea()">
+                Añadir Linea
+            </button>
+
+            <div class="list">
+                <div class="item" ng-repeat="item in lineasPartes">
+                    <p>{{item.empleado[0].Nombre}}</p>
+                </div>
+            </div>
+
+            <button class="button button-full button-balanced">
+                Confirmar Parte
+            </button>
+        </div>
+        <div id="gasto" ng-if="statusGasto" class="list">
+            <div class="item item-divider">
+                Gasto
+            </div>
+            <div class="item item-icon-right ion-social-euro"  href="#"  ng-click="OpcionesGasto()">
+                <span ng-if="!gastoSeleccionado">Gastos</span><span ng-if="gastoSeleccionado">{{gastoSeleccionado[0].Descripcion}}</span>
+            </div>
+            <div class="item item-icon-right ion-person"  href="#"  ng-click="OpcionesEmpleadoGasto()">
+                <span ng-if="!gastoEmpleadoSeleccionado">Empleado</span><span ng-if="gastoEmpleadoSeleccionado">{{gastoEmpleadoSeleccionado[0].Nombre}}</span>
+            </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Cantidad</span>
+                <input type="number" ng-model="gasto.cantidad" placeholder="Cantidad en Euros">
+            </label>
+
+            <button class="button button-full button-energized" ng-click="addLineaGasto()">
+                Añadir Linea
+            </button>
+            <button class="button button-full button-balanced">
+                Confirmar Parte
+            </button>
+        </div>
+        <div id="material" ng-if="statusMaterial" class="list">
+            <div class="item item-divider">
+                Materiales
+            </div>
+            <div class="item item-icon-right ion-person"  href="#"  ng-click="OpcionesArticulo()">
+                <span ng-if="!articuloSeleccionado">Articulo</span><span ng-if="articuloSeleccionado">{{articuloSeleccionado[0].Descripcion}}</span>
+            </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Cantidad</span>
+                <input type="number" ng-model="articulo.cantidad" placeholder="Cantidad en Euros">
+            </label>
+            <button class="button button-full button-energized" ng-click="addLineaGasto()">
+                Añadir Linea
+            </button>
+
+            <button class="button button-full button-balanced">
+                Confirmar Parte
+            </button>
+        </div>
+
+
+
+
+	</ion-content>
+</ion-view>
+
+
+<script id="contact-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar>
+            <h1 class="title">{{title}}</h1>
+            <button class="button button-outline button-stable" ng-click="closeModal()">
+                Cerrar
+            </button>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <a class="item" ng-repeat="item in data" ng-click="select(item.id, tipo)">
+                    {{item.name}}
+                </a>
+            </div>
+        </ion-content>
+    </div>
+</script>
+
+<script id="articulos.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar>
+            <h1 class="title">{{title}}</h1>
+            <button class="button button-outline button-stable" ng-click="closeArticulosModal()">
+                Cerrar
+            </button>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <a class="item" ng-repeat="item in data" ng-click="select(item.id, tipo)">
+                    {{item.name}}
+                </a>
+            </div>
+        </ion-content>
+    </div>
+</script>

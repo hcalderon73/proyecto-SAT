@@ -7,7 +7,6 @@ angular.module('main').controller('AvisoCtrl', function ($scope, $stateParams, $
   $scope.aviso = $scope.detalleAviso[0];
   $scope.estados = angular.fromJson(localStorage.estados);
   $scope.estados = _.filter($scope.estados, function(element){
-    console.log(element);
     return element.Publicable ==  true;
   })
 
@@ -67,7 +66,6 @@ angular.module('main').controller('AvisoCtrl', function ($scope, $stateParams, $
       return value.EstadoAviso == idEstado;
     })
     $scope.estadoSeleccionado = nuevoEstado;
-    console.log(nuevoEstado);
     $scope.showPopup();
 
   };
@@ -88,14 +86,14 @@ angular.module('main').controller('AvisoCtrl', function ($scope, $stateParams, $
       title: 'Nuevo Aviso relacionado',
       nombre: 'nuevo_avisos_relacionado',
       icon: 'ion-android-add-circle',
-      url: 'sat.mapa',
+      url: 'sat.aviso_relacionado',
       badge: null
     },
     {
       title: 'Alta Parte',
       nombre: 'alta_partes',
       icon: 'ion-android-clipboard',
-      url: 'sat.mapa',
+      url: 'sat.alta_partes',
       badge: null
     },
     {

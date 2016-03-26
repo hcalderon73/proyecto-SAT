@@ -2,11 +2,7 @@ angular.module('main')
 .controller('HomeCtrl', function () {
     this.Avisos = JSON.parse(localStorage.avisos);
     this.numeroAvisos = Object.keys(this.Avisos).length;
-
     this.avisoSeleccionado = angular.fromJson(localStorage.avisoSeleccionado);
-
-
-
 
     this.lista = [
       {
@@ -37,10 +33,4 @@ angular.module('main')
         url: 'sat.mapa'
       },
     ];
-
-  
-  
-
-  
- 
 });

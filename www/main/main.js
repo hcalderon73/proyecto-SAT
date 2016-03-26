@@ -30,7 +30,7 @@ angular.module('main', [
   })
 
 
-.run(function($ionicPlatform, $auth, $state, amMoment, $rootScope, $cordovaSQLite) {
+.run(function($ionicPlatform, $auth, $state, amMoment, $rootScope, $cordovaSQLite, $testService) {
 
 
 
@@ -51,6 +51,7 @@ angular.module('main', [
         $state.go('sat.config'); // go to login
       } else {
         console.log("ONLINE");
+        $testService.loginInfo();
         $state.go('sat.home');
       }
 
@@ -121,6 +122,7 @@ angular.module('main', [
   })
   .state('sat.home', {
     url: '^/home',
+    cache:false,
     views: {
       'menuContent': {
         templateUrl: 'main/templates/home/home.html',
@@ -173,6 +175,24 @@ angular.module('main', [
       }
     }
   })
+  .state('sat.aviso_relacionado', {
+    url: '^/aviso/relacionado',
+    views: {
+      'menuContent': {
+        templateUrl: 'main/templates/avisos/aviso/aviso_relacionado.html',
+        controller: 'AvisoRelacionadoCtrl'
+      }
+    }
+  })
+    .state('sat.alta_partes', {
+      url: '^/aviso/partes',
+      views: {
+        'menuContent': {
+          templateUrl: 'main/templates/avisos/aviso/aviso_partes.html',
+          controller: 'AvisoPartesCtrl'
+        }
+      }
+    })
   .state('sat.gestion_documental', {
     url: '^/aviso/gestion_documental',
     views: {
