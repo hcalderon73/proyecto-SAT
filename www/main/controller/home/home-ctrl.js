@@ -3,6 +3,11 @@ angular.module('main')
     this.Avisos = JSON.parse(localStorage.avisos);
     this.numeroAvisos = Object.keys(this.Avisos).length;
 
+    this.avisoSeleccionado = angular.fromJson(localStorage.avisoSeleccionado);
+
+
+
+
     this.lista = [
       {
         title: 'Avisos',
@@ -11,20 +16,6 @@ angular.module('main')
         url: 'sat.avisos',
         badge: this.numeroAvisos
       },
-      /*{
-        title: 'Cambiar Estados',
-        nombre: 'cambiar_estados',
-        icon: 'ion-arrow-swap',
-        url: 'sat.mapa',
-        badge: null
-      },
-      {
-        title: 'Mapa de Avisos',
-        nombre: 'mapa_avisos',
-        icon: 'ion-android-pin',
-        url: 'sat.mapa',
-        badge: null
-      },*/
       {
         title: 'Nuevo Aviso',
         nombre: 'nuevo_avisos',
@@ -32,20 +23,6 @@ angular.module('main')
         url: 'sat.nuevo_aviso',
         badge: null
       },
-      /*{
-        title: 'Alta Parte',
-        nombre: 'alta_partes',
-        icon: 'ion-android-clipboard',
-        url: 'sat.mapa',
-        badge: null
-      },
-      {
-        title: 'Equipos/Revisiones',
-        nombre: 'equipos_revisiones',
-        icon: 'ion-android-people',
-        url: 'sat.mapa',
-        badge: null
-      },*/
       {
         title: 'Ver Pendientes',
         nombre: 'ver_pendientes',

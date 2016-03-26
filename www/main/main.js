@@ -31,6 +31,10 @@ angular.module('main', [
 
 
 .run(function($ionicPlatform, $auth, $state, amMoment, $rootScope, $cordovaSQLite) {
+
+
+
+
    /* $rootScope.$on('$stateChangeStart',
       function(event, toState, toParams, fromState, fromParams){
         console.log(toState.name);
@@ -84,7 +88,7 @@ angular.module('main', [
         ]
       };
 
-      $rootScope.db = $cordovaSQLite.openDB(dbOptions.name);
+      //$rootScope.db = $cordovaSQLite.openDB(dbOptions.name);
       angular.forEach(dbOptions.tables, function(table) {
         var columns = [];
 
@@ -93,14 +97,12 @@ angular.module('main', [
         });
         var query = 'CREATE TABLE IF NOT EXISTS ' + table.name + ' (' + columns.join(',') + ')';
         //self.query(query);
-        alert('Table ' + table.name + ' initialized');
+        //alert('Table ' + table.name + ' initialized');
       });
       //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS joke(id integer primary key, joke text)");
     });
 })
-
 .config(function ($stateProvider, $urlRouterProvider, $provide) {
-
   $stateProvider
   .state('sat', {
     url: '/sat',
@@ -167,7 +169,7 @@ angular.module('main', [
     views: {
       'menuContent': {
         templateUrl: 'main/templates/avisos/aviso/aviso.html',
-        controller: 'AvisoCtrl as ctrl'
+        controller: 'AvisoCtrl'
       }
     }
   })

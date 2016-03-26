@@ -94,10 +94,6 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
     $scope.modal.show();
   };
 
-  $scope.closeModal = function () {
-    $scope.modal.hide();
-  };
-
 
   $scope.OpcionesDireccion = function () {
     var list = [];
@@ -113,10 +109,6 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
     $scope.title = "Direccion";
     $scope.data = list;
     $scope.modal.show();
-  };
-
-  $scope.closeModal = function () {
-    $scope.modal.hide();
   };
 
   $scope.select = function(itemId, tipo) {

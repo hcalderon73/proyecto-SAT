@@ -1,11 +1,33 @@
 <ion-view view-title="Aviso {{avisoId}}">
 	<ion-content class="padding">
         <ion-list>
-            <a class="item item-icon-left" ui-sref="{{item.url}}" ng-repeat="item in lista">
+            <a class="item item-icon-left"  ng-click="openModal()">
+                <i class="icon ion-arrow-swap"></i>
+                Cambiar Estados del Aviso
+                <span ng-if="item.badge" class="badge badge-assertive">{{item.badge}}</span>
+            </a>
+            <a class="item item-icon-left" ui-sref="{{item.url}}" ng-repeat="item in lista" ng-click="{{item.action}}">
                 <i class="icon {{item.icon}}"></i>
                 {{item.title}}
                 <span ng-if="item.badge" class="badge badge-assertive">{{item.badge}}</span>
             </a>
         </ion-list>
 	</ion-content>
+
+
+
 </ion-view>
+
+
+<script id="estados-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">Cambio de Estado</h1> <a class="button button-icon icon ion-android-close" ng-click="closeModal()"></a>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <ion-radio ng-model="choice" ng-value="item.EstadoAviso" ng-repeat="item in estados" ng-click="selectEstado(item.EstadoAviso)">{{item.Descripcion}}</ion-radio>
+             </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

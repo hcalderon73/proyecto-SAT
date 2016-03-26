@@ -2,6 +2,18 @@
 	<!-- do you want padding? -->
 	<ion-content class="padding">
         <ion-list>
+            <a style="background: #E0F5FF;" class="item" ng-if="ctrl.avisoSeleccionado" ui-sref="sat.aviso({avisoId: ctrl.avisoSeleccionado[0].Codigo})">
+                <h2>{{ctrl.avisoSeleccionado[0].RazonSocial}}</h2>
+                <p>{{ctrl.avisoSeleccionado[0].Descripcion}}</p>
+                <div class="row">
+                    <div class="col-50">
+                        <p class="text-center" style="font-size: .8em; color: #4d4d4d" am-time-ago="ctrl.avisoSeleccionado[0].FechaPrevista"></p>
+                    </div>
+                    <div class="col-50">
+                        <p class="text-center" style="font-size: .8em; color: #4d4d4d" am-time-ago="ctrl.avisoSeleccionado[0].FechaRecepcion"></p>
+                    </div>
+                </div>
+            </a>
             <a class="item item-icon-left" ui-sref="{{item.url}}" ng-repeat="item in ctrl.lista">
                 <i class="icon {{item.icon}}"></i>
                 {{item.title}}

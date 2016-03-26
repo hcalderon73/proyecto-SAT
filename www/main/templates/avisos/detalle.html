@@ -5,49 +5,95 @@
 				Datos del Aviso {{avisoId}}
 			</div>
 			<div class="item">
-				<small>Descripción</small>
+				<small style="color: #9E9E9E;">Descripción</small><br />
 				{{aviso.Descripcion}}
 			</div>
 			<a class="item" href="#"> 
-				<small>Comentarios</small> 
+				<small style="color: #9E9E9E;">Comentarios</small> <br />
 				{{aviso.Comentarios}}   
 			</a>
 			<div class="item">
-				<small>Obra</small>
+				<small style="color: #9E9E9E;">Obra</small><br />
 				{{aviso.DescripcionObra}}
 			</div>
 			<div class="item">
-				<small>Tipo Aviso</small>
+				<small style="color: #9E9E9E;">Tipo Aviso</small><br />
 				{{aviso.DescripcionTipo}}
 			</div>
 			<div class="item">
-				<small>Estado</small>
+				<small style="color: #9E9E9E;">Estado</small><br />
 				{{aviso.DescripcionEstado}}				 
 			</div>
 			<div class="item">
-				<small>Empleado Origen</small>
+				<small style="color: #9E9E9E;">Empleado Origen</small><br />
 				{{aviso.NombreEmpleadoOrigen}}
 			</div>
 			<div class="item">
-				<small>Empleado Destino</small>
+				<small style="color: #9E9E9E;">Empleado Destino</small><br />
 				{{aviso.NombreEmpleado}}
 			</div>
 			<div class="item">
-				<small>Empleado responsable</small>
+				<small style="color: #9E9E9E;">Empleado responsable</small><br />
 				{{aviso.NombreResponsable}}
 			</div>
 			<div class="item">
-				<small>Fecha/hora recepción</small>
+				<small style="color: #9E9E9E;">Fecha/hora recepción</small><br />
                 {{aviso.FechaRecepcion | amDateFormat:'DD/MM/YYYY HH:mm:ss '}}
 			</div>
 			<div class="item">
-				<small>Fecha/hora prevista</small>
+				<small style="color: #9E9E9E;">Fecha/hora prevista</small><br />
                 {{aviso.FechaPrevista | amDateFormat:'DD/MM/YYYY HH:mm:ss '}}
 			</div>
 			<div class="item">
-				<small>Tiempo Trabajado</small>
+				<small style="color: #9E9E9E;">Tiempo Trabajado</small><br />
 				{{aviso.TiempoTrabajo}}
 			</div>
+
+            <div class="item item-divider">
+                Dirección del cliente
+            </div>
+            <div class="item">
+                <small style="color: #9E9E9E;">Razón Social</small><br />
+                {{aviso.RazonSocial}}
+            </div>
+            <a class="item" href="#">
+                <small style="color: #9E9E9E;">Dirección</small> <br />
+                {{aviso.Via}} {{aviso.Direccion}} {{aviso.Numero}}
+            </a>
+            <div class="item">
+                <small style="color: #9E9E9E;">Código Postal:</small><br />
+                {{aviso.CP}}
+            </div>
+            <div class="item">
+                <small style="color: #9E9E9E;">Población:</small><br />
+                {{aviso.Poblacion}}
+            </div>
+            <div class="item">
+                <small style="color: #9E9E9E;">País</small><br />
+                {{aviso.Pais}}
+            </div>
+            <div class="item">
+                <small style="color: #9E9E9E;">Persona Contacto</small><br />
+                {{aviso.Contacto}}
+            </div>
+            <div class="item">
+                <small style="color: #9E9E9E;">Teléfono</small><br />
+                {{aviso.Telefono}}
+            </div>
+            <div class="item">
+                <small style="color: #9E9E9E;">Email</small><br />
+                {{aviso.Email}}
+            </div>
+            <div class="item item-divider">
+                Movimientos
+            </div>
+            <div class="item  item-button-right">
+                <small style="color: #9E9E9E;">Movimientos</small><br />
+                {{aviso.Movimientos.length}}
+                <button class="button button-positive" ng-click="verMovimiento()">
+                    <i class="icon ion-arrow-swap"></i>
+                </button>
+            </div>
 		</div>
 	</ion-content>
     <div class="bar bar-footer disable-user-behavior">
@@ -79,3 +125,22 @@
     line-height: 21px;
 }
 </style>
+
+
+<script id="contact-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar>
+            <h1 class="title"></h1>
+            <button class="button button-outline button-stable" ng-click="closeModal()">
+                Cerrar
+            </button>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <a class="item" ng-repeat="item in aviso.Movimientos"">
+                    {{item}}
+                </a>
+            </div>
+        </ion-content>
+    </div>
+</script>
