@@ -25,34 +25,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="nuevo_aviso.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templates/avisos/nuevo_aviso.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.0" vertical-offset="529" max-vertical-offset="1360">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3757">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="3757">
+              <caret line="128" column="32" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="aviso-partes-ctrl.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/controller/avisos/aviso/aviso-partes-ctrl.js">
+      <file leaf-file-name="nuevo-aviso-ctrl.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/controller/avisos/nuevo-aviso-ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.05862069" vertical-offset="238" max-vertical-offset="6307">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.21258907" vertical-offset="4785" max-vertical-offset="5831">
+              <caret line="292" column="4" selection-start-line="292" selection-start-column="4" selection-end-line="292" selection-end-column="4" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="aviso_partes.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/templates/avisos/aviso/aviso_partes.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-49.03846" vertical-offset="0" max-vertical-offset="2958">
-              <caret line="75" column="107" selection-start-line="75" selection-start-column="107" selection-end-line="75" selection-end-column="107" />
-              <folding>
-                <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -78,9 +76,7 @@
         <option value="$PROJECT_DIR$/main/directives/template/modal/modal-template.html" />
         <option value="$PROJECT_DIR$/main/directives/modal-directive.js" />
         <option value="$PROJECT_DIR$/main/services/database.js" />
-        <option value="$PROJECT_DIR$/main/templates/avisos/nuevo_aviso.html" />
         <option value="$PROJECT_DIR$/main/templates/home/home.html" />
-        <option value="$PROJECT_DIR$/main/controller/avisos/nuevo-aviso-ctrl.js" />
         <option value="$PROJECT_DIR$/main/controller/avisos/avisos-detalle-ctrl.js" />
         <option value="$PROJECT_DIR$/main/templates/avisos/detalle.html" />
         <option value="$PROJECT_DIR$/main/controller/home/home-ctrl.js" />
@@ -93,8 +89,10 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/main/controller/avisos/aviso/aviso-ctrl.js" />
         <option value="$PROJECT_DIR$/main/controller/avisos/aviso/aviso-relacionado-ctrl.js" />
-        <option value="$PROJECT_DIR$/main/templates/avisos/aviso/aviso_partes.html" />
         <option value="$PROJECT_DIR$/main/controller/avisos/aviso/aviso-partes-ctrl.js" />
+        <option value="$PROJECT_DIR$/main/templates/avisos/aviso/aviso_partes.html" />
+        <option value="$PROJECT_DIR$/main/templates/avisos/nuevo_aviso.html" />
+        <option value="$PROJECT_DIR$/main/controller/avisos/nuevo-aviso-ctrl.js" />
       </list>
     </option>
   </component>
@@ -358,7 +356,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -761,22 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/avisos/nuevo_aviso.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.796296" vertical-offset="285" max-vertical-offset="1088">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="36" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/controller/avisos/nuevo-aviso-ctrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.05402299" vertical-offset="3209" max-vertical-offset="4726">
-          <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/controller/avisos/avisos-ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31264368" vertical-offset="0" max-vertical-offset="870">
@@ -785,28 +767,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/main.js">
+    <entry file="file://$PROJECT_DIR$/main/controller/avisos/aviso/aviso-partes-ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3757">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.31264368" vertical-offset="238" max-vertical-offset="6307">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/avisos/aviso/aviso_partes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-49.03846" vertical-offset="0" max-vertical-offset="2958">
-          <caret line="75" column="107" selection-start-line="75" selection-start-column="107" selection-end-line="75" selection-end-column="107" />
-          <folding>
-            <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.83886254" vertical-offset="2012" max-vertical-offset="2992">
+          <caret line="160" column="16" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/controller/avisos/aviso/aviso-partes-ctrl.js">
+    <entry file="file://$PROJECT_DIR$/main/templates/avisos/nuevo_aviso.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05862069" vertical-offset="238" max-vertical-offset="6307">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="-13.0" vertical-offset="529" max-vertical-offset="1360">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="3757">
+          <caret line="128" column="32" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/controller/avisos/nuevo-aviso-ctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21258907" vertical-offset="4785" max-vertical-offset="5831">
+          <caret line="292" column="4" selection-start-line="292" selection-start-column="4" selection-end-line="292" selection-end-column="4" />
           <folding />
         </state>
       </provider>

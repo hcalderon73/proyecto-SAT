@@ -156,7 +156,9 @@
         <body>
         <pane>
 
-            <content has-header="true"  padding="true" on-infinite-scroll="addMoreItem">
+            <content padding="true">
+
+
                 <div class=" list padding">
                     <div ng-repeat="item in items | limitTo:numberOfItemsToDisplay" class="item" type="item-text-wrap">
                         <h3>{{item}}</h3>

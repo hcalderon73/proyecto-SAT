@@ -1,14 +1,20 @@
 'use strict';
-angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDatePicker, $ionicModal) {
+angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDatePicker, $ionicModal, $ionicPopup, $timeout) {
 
   $scope.datos = [];
-
+  $scope.query = '';
   var clientes = angular.fromJson(localStorage.clientes);
   var tiposAviso = angular.fromJson(localStorage.tiposAviso);
   var estados = angular.fromJson(localStorage.estados);
   var empleadoDestino = angular.fromJson(localStorage.empleados);
   var empleadoResponsable = angular.fromJson(localStorage.empleados);
   var selecciones = [];
+
+  $scope.nuevoAviso = {
+    descripcion: null,
+    comentario: null
+  };
+
 
 
   /*MODAL DINAMICO*/
@@ -20,6 +26,9 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
   });
 
   $scope.closeModal = function () {
+    console.log($scope.query);
+    $scope.query = undefined;
+    console.log($scope.query);
     $scope.modal.hide();
   };
 
@@ -142,6 +151,8 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
       return element.cliente == itemId;
     });
 
+    $scope.nuevoAviso.cliente = $scope.clienteSelecionado;
+
     selecciones.cliente = $scope.clienteSelecionado;
 
     localStorage.datosFormNuevoAviso = angular.toJson(selecciones.cliente);
@@ -158,6 +169,7 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
       return element.Indice == itemId;
     });
 
+    $scope.nuevoAviso.tiposAviso = $scope.tipoAvisoSeleccionado;
     selecciones.tiposAviso = $scope.tipoAvisoSeleccionado;
     localStorage.datosFormNuevoAviso = angular.toJson(selecciones.tiposAviso);
   };
@@ -167,6 +179,8 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
     $scope.estadoSeleccionado = _.filter(estados, function (element) {
       return element.EstadoAviso == itemId;
     });
+
+    $scope.nuevoAviso.estado = $scope.estadoSeleccionado;
     selecciones.estados = $scope.estadoSeleccionado;
     localStorage.datosFormNuevoAviso = angular.toJson(selecciones.estados);
   };
@@ -177,6 +191,7 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
       return element.Empleado == itemId;
     });
 
+    $scope.nuevoAviso.empleadoDestino = $scope.empleadoDestinoSeleccionado;
     selecciones.empleadoDestino = $scope.empleadoDestinoSeleccionado;
     localStorage.datosFormNuevoAviso = angular.toJson(selecciones.empleadoDestino);
   };
@@ -187,6 +202,7 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
       return element.Empleado == itemId;
     });
 
+    $scope.nuevoAviso.empleadoResponsable = $scope.empleadoResponsableSeleccionado;
     selecciones.empleadoResponsable = $scope.empleadoResponsableSeleccionado;
     localStorage.datosFormNuevoAviso = angular.toJson(selecciones.empleadoResponsable);
   };
@@ -196,6 +212,8 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
     $scope.direccionSeleccionada = _.filter($scope.listaDirecciones, function (element) {
       return element.direccion == itemId;
     });
+
+    $scope.nuevoAviso.direccion = $scope.direccionSeleccionada;
     selecciones.direccion = $scope.direccionSeleccionada;
     localStorage.datosFormNuevoAviso = angular.toJson(selecciones.direccion);
   };
@@ -205,6 +223,9 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
     callback: function (val) {  //Mandatory
       //console.log('Return value from the datepicker popup is : ' + val, new Date(val));
       $scope.fechaPrevista = new Date(val);
+
+      $scope.nuevoAviso.fechaPrevista = $scope.fechaPrevista;
+
       selecciones.fechaPrevista = $scope.fechaPrevista;
       localStorage.datosFormNuevoAviso = angular.toJson(selecciones.fechaPrevista);
     },
@@ -262,11 +283,55 @@ angular.module('main').controller('NuevoAvisoCtrl', function ($scope, ionicDateP
       //console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
       $scope.horaPrevista = selectedTime.getUTCHours() + ':' + selectedTime.getUTCMinutes();
       selecciones.horaPrevista = $scope.horaPrevista;
+
+      $scope.nuevoAviso.horaPrevista = $scope.horaPrevista;
       localStorage.datosFormNuevoAviso = angular.toJson(selecciones.horaPrevista);
     }
   }
 
+  $scope.showPopup = function(validate) {
+    
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      title: validate.title,
+      subTitle: validate.subTitle,
+      scope: $scope,
+      buttons: [
+        { text: 'Cerrar' }
+      ]
+    });
 
+    myPopup.then(function(res) {
+      console.log('Tapped!', res);
+    });
+
+    $timeout(function() {
+      myPopup.close(); //close the popup after 3 seconds for some reason
+    }, 2500);
+  };
+
+  $scope.guardarAviso = function () {
+
+    if(!$scope.nuevoAviso.descripcion){
+      var validate = {
+        title: "Debe informar una descripción",
+        subTitle: 'para identificar el aviso.'
+      }
+      return $scope.showPopup(validate);
+    };
+
+    if(!$scope.nuevoAviso.cliente){
+      var validate = [{
+        title: "Debe informar un Cliente",
+        subTitle: 'Dato importante.'
+      }];
+      return $scope.showPopup(validate);
+    };
+
+
+      console.log($scope.nuevoAviso);
+
+  }
 
 
 });

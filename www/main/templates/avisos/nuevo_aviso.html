@@ -3,11 +3,11 @@
         <div class="list list-inset">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Descripción</span>
-                <input type="text" placeholder="Descripción Aviso">
+                <input type="text" ng-model="nuevoAviso.descripcion" placeholder="Descripción Aviso">
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Comentario</span>
-                <input type="text" placeholder="Agregar Comentario">
+                <input type="text" ng-model="nuevoAviso.comentario" placeholder="Agregar Comentario">
             </label>
             <div class="item item-icon-right ion-briefcase"  href="#"  ng-click="OpcionesCliente()">
                 <span ng-if="!clienteSelecionado">Cliente</span><span ng-if="clienteSelecionado">{{clienteSelecionado[0].razonSocial}}</span>
@@ -50,10 +50,26 @@
         </ion-header-bar>
         <ion-content>
             <div class="list">
-                <a class="item" ng-repeat="item in data" ng-click="select(item.id, tipo)">
+                <a class="item" ng-repeat="item in data | filter:query | orderBy:'name':orderReverse | limitTo:limit" ng-click="select(item.id, tipo)">
                     {{item.name}}
                 </a>
             </div>
         </ion-content>
+        <ion-footer-bar style="z-index: 9999;padding-top: 0px;margin-top: 0px;" class="bar bar-footer">
+            <div class="row" style="    margin-top: 0px;    padding-top: 0px;">
+                <div class="col">
+                    <input value="" type="text" ng-model="query" placeholder="BUSCAR" class="ng-pristine ng-untouched ng-valid">
+                </div>
+                <div class="col">
+                    <select class="form-control input-lg ng-valid ng-dirty ng-valid-parse ng-touched" ng-model="limit" style="border: none;height: 35px;color: #999;">
+                        <option value="">Seleccione una cantidad</option>
+                        <option value="25">25 registros</option>
+                        <option value="50">50 registros</option>
+                        <option value="100">100 registros</option>
+                        <option value="Infinity">Todos</option>
+                    </select>
+                </div>
+            </div>
+        </ion-footer-bar>
     </div>
 </script>
