@@ -1,23 +1,77 @@
 'use strict';
-angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDatePicker, $ionicModal, $rootScope) {
+angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDatePicker, $ionicModal, $rootScope, $cordovaBarcodeScanner) {
 
+  $scope.lineasPartes = [];
   $scope.statusObservaciones = true;
   $scope.statusManoObra = false;
   $scope.statusGasto = false;
   $scope.statusMaterial = false;
   $scope.select = select;
 
+
+  /*Observaciones*/
+  $scope.observaciones = {
+    observacion: '',
+    referencia: '',
+    fecha: '',
+    tipoParte: ''
+  };
+
+  /*Empleado*/
+  $scope.manoObra = {
+    empleado:'',
+    imputar:false,
+    concepto:'',
+    tipoHora:'',
+    horas: ''
+  };
+
   $scope.linea = {
     concepto: undefined,
     imputar: false
   };
 
+  $scope.confirmarParte = function () {
+    /*primera parte*/
+    console.log($scope.observaciones);
+    /*Segunda parte*/
+    console.log($scope.manoObra);
+    console.log($scope.lineasPartes);
+    /*Tercera parte*/
+
+    /*cuarta parte*/
+  };
+
+  $scope.barcode = function () {
+
+    $cordovaBarcodeScanner
+      .scan()
+      .then(function (result) {
+        alert("We got a barcode\n" +
+        "Result: " + result.text + "\n" +
+        "Format: " + result.format + "\n" +
+        "Cancelled: " + result.cancelled);
+      },
+      function (error) {
+        alert("Scanning failed: " + error);
+      });
+
+
+    // NOTE: encoding not functioning yet
+    $cordovaBarcodeScanner
+      .encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com")
+      .then(function(success) {
+        alert(success);
+      }, function(error) {
+        // An error occurred
+      });
+  };
+
+
   var empleados = angular.fromJson(localStorage.empleados);
   var horas = angular.fromJson(localStorage.tiposHora);
   var gastos = angular.fromJson(localStorage.gastos);
   var articulos = angular.fromJson(localStorage.articulos);
-
-  console.log(gastos);
 
   /*MODAL DINAMICO*/
   $ionicModal.fromTemplateUrl('contact-modal.html', {
@@ -69,13 +123,18 @@ angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDate
     $scope.empleadoSeleccionado = _.filter(empleados, function (element) {
       return element.Empleado == itemId;
     });
+
+    $scope.manoObra.empleado = $scope.empleadoSeleccionado;
+
   };
 
   $scope.filterHoras = function (itemId) {
-//    $scope.horaSeleccionado = [];
+//    $scope.horaPrevista = [];
     $scope.horaSeleccionado = _.filter(horas, function (element) {
      return element.codigo == itemId;
     });
+
+    $scope.manoObra.tipoHora = $scope.horaSeleccionado;
 
   };
 
@@ -110,50 +169,29 @@ angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDate
     $scope.articulosModal.hide();
   };
 
-  var lineasPartes = [];
-
   $scope.addLinea = function () {
-
-    var concepto = $scope.linea.concepto;
-
-    $scope.linea = {
-      empleado: $scope.empleadoSeleccionado,
-      concepto: concepto.toString(),
-      imputar: $scope.linea.imputar,
-      horaSeleccionado: $scope.horaSeleccionado,
-      hora: $scope.horaPrevista
-    };
-
-    if(!$scope.linea.empleado) {
+    if(!$scope.manoObra.empleado) {
       return alert("Debe informar un empleado");
     }
 
-    if(!$scope.linea.concepto) {
+    if(!$scope.manoObra.concepto) {
       return alert("Debe informar un concepto");
     }
 
-    if(!$scope.linea.horaSeleccionado) {
+    if(!$scope.manoObra.tipoHora) {
       return alert("Debe informar un tipo de hora");
     }
 
-    if(!$scope.linea.hora) {
+    if(!$scope.manoObra.horas) {
       return alert("Debe informar una hora");
     }
 
-
-
-    lineasPartes.push($scope.linea);
-
-    $scope.lineasPartes = lineasPartes;
-
-    console.log(lineasPartes);
-
-    $scope.empleadoSeleccionado = "";
-    $scope.linea.concepto = "";
-    $scope.linea.imputar = false;
-    $scope.horaSeleccionado = "";
-    $scope.horaPrevista = "";
-
+    $scope.lineasPartes.push($scope.manoObra);
+    console.log($scope.lineasPartes);
+    $scope.manoObra = {};
+    $scope.empleadoSeleccionado = '';
+    $scope.horaSeleccionado = '';
+    $scope.horaPrevista = '';
   };
 
 
@@ -178,12 +216,10 @@ angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDate
   }
 
   function resetStatus() {
-
     $scope.statusObservaciones = false;
     $scope.statusManoObra = false;
     $scope.statusGasto = false;
     $scope.statusMaterial = false;
-
   };
 
 
@@ -254,15 +290,20 @@ angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDate
 
     $scope.tipo = "articulos";
     $scope.title = "Articulos";
-    $scope.data = list;
+    $scope.dataAvisos = list;
     $scope.articulosModal.show();
   };
 
 
-  var ipObj1 = {
+
+
+
+
+  var fechaObservaciones = {
     callback: function (val) {  //Mandatory
       //console.log('Return value from the datepicker popup is : ' + val, new Date(val));
       $scope.fechaPrevista = new Date(val);
+      $scope.observaciones.fecha = $scope.fechaPrevista;
     },
     disabledDates: [            //Optional
       new Date(2016, 2, 16),
@@ -282,8 +323,8 @@ angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDate
     templateType: 'popup'       //Optional
   };
 
-  $scope.openDatePicker = function(){
-    ionicDatePicker.openDatePicker(ipObj1);
+  $scope.fechaObservaciones = function(){
+    ionicDatePicker.openDatePicker(fechaObservaciones);
   };
 
 
@@ -306,7 +347,6 @@ angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDate
 
   function timePickerCallback(val) {
 
-    console.log(val);
     if($scope.horaPrevista != undefined){
       $scope.timePickerObject.inputEpochTime = $scope.horaPrevista;
     }
@@ -315,10 +355,11 @@ angular.module('main').controller('AvisoPartesCtrl', function ($scope, ionicDate
       //console.log('Time not selected');
     } else {
       var selectedTime = new Date(val * 1000);
-      //console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
       $scope.horaPrevista = selectedTime.getUTCHours() + ':' + selectedTime.getUTCMinutes();
-
+      $scope.manoObra.horas = $scope.horaPrevista;
     }
-  }
+  };
+
+
 
 });

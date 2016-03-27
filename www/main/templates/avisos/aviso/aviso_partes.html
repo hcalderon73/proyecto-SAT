@@ -28,22 +28,22 @@
             </div>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Observación</span>
-                <input type="text" placeholder="Introduzca una observación">
+                <input type="text" ng-model="observaciones.observacion" placeholder="Introduzca una observación">
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Referencia</span>
-                <input type="text" placeholder="Referencia del parte">
+                <input type="text" ng-model="observaciones.referencia" placeholder="Referencia del parte">
             </label>
-            <a class="item"  href="#" ng-click="openDatePicker()">
+            <a class="item"  href="#" ng-click="fechaObservaciones()">
                 <span ng-if="!fechaPrevista">Fecha</span><span ng-if="fechaPrevista">Fecha {{fechaPrevista | amDateFormat:'DD/MM/YYYY'}}</span>
             </a>
             <div class="item item-divider">
                 Seleccione el tipo de parte
             </div>
-            <ion-radio ng-model="choice" ng-value="'A'">Parte de Administración</ion-radio>
-            <ion-radio ng-model="choice" ng-value="'B'">Parte de Obra</ion-radio>
+            <ion-radio ng-model="observaciones.tipoParte" ng-value="'administracion'">Parte de Administración</ion-radio>
+            <ion-radio ng-model="observaciones.tipoParte" ng-value="'obra'">Parte de Obra</ion-radio>
 
-            <button class="button button-full button-balanced">
+            <button class="button button-full button-balanced" ng-click="confirmarParte()">
                 Confirmar Parte
             </button>
         </div>
@@ -54,10 +54,10 @@
             <div class="item item-icon-right ion-person"  href="#"  ng-click="OpcionesEmpleado()">
                 <span ng-if="!empleadoSeleccionado">Empleado</span><span ng-if="empleadoSeleccionado">{{empleadoSeleccionado[0].Nombre}}</span>
             </div>
-            <ion-checkbox ng-model="linea.imputar">Imputar a todos los empleados</ion-checkbox>
+            <ion-checkbox ng-model="manoObra.imputar">Imputar a todos los empleados</ion-checkbox>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Concepto</span>
-                <input type="text" ng-model="linea.concepto" placeholder="Introduzca un concepto">
+                <input type="text" ng-model="manoObra.concepto" placeholder="Introduzca un concepto">
             </label>
             <div class="item item-icon-right ion-clock"  href="#"  ng-click="OpcionesHora()">
                 <span ng-if="!horaSeleccionado">Tipo de Hora</span><span ng-if="horaSeleccionado">{{horaSeleccionado[0].descripcion}}</span>
@@ -67,18 +67,19 @@
                     <standard-time-meridian etime='timePickerObject.inputEpochTime'><span ng-if="!horaPrevista">Horas</span><span ng-if="horaPrevista">Hora {{horaPrevista}}</span></standard-time-meridian>
                 </a>
             </ionic-timepicker>
-
             <button class="button button-full button-energized" ng-click="addLinea()">
                 Añadir Linea
             </button>
-
             <div class="list">
-                <div class="item" ng-repeat="item in lineasPartes">
-                    <p>{{item.empleado[0].Nombre}}</p>
+                <div class="item item-button-right" ng-repeat="item in lineasPartes">
+                    <h4><span>{{item.horas}}</span> {{item.empleado[0].Nombre}}</h4>
+                    <p>{{item.tipoHora[0].descripcion}} <small ng-if="item.imputar == true">Imputar a Todos</small></p>
+                    <button class="button button-assertive">
+                        <i class="icon ion-close-circled"></i>
+                    </button>
                 </div>
             </div>
-
-            <button class="button button-full button-balanced">
+            <button class="button button-full button-balanced" ng-click="confirmarParte()">
                 Confirmar Parte
             </button>
         </div>
@@ -111,6 +112,11 @@
             <div class="item item-icon-right ion-person"  href="#"  ng-click="OpcionesArticulo()">
                 <span ng-if="!articuloSeleccionado">Articulo</span><span ng-if="articuloSeleccionado">{{articuloSeleccionado[0].Descripcion}}</span>
             </div>
+            <button class="button button-full button-energized" ng-click="barcode()">
+                BARCODE
+            </button>
+
+
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Cantidad</span>
                 <input type="number" ng-model="articulo.cantidad" placeholder="Cantidad en Euros">
@@ -123,10 +129,6 @@
                 Confirmar Parte
             </button>
         </div>
-
-
-
-
 	</ion-content>
 </ion-view>
 
@@ -151,18 +153,17 @@
 
 <script id="articulos.html" type="text/ng-template">
     <div class="modal">
-        <ion-header-bar>
-            <h1 class="title">{{title}}</h1>
-            <button class="button button-outline button-stable" ng-click="closeArticulosModal()">
-                Cerrar
-            </button>
-        </ion-header-bar>
-        <ion-content>
-            <div class="list">
-                <a class="item" ng-repeat="item in data" ng-click="select(item.id, tipo)">
-                    {{item.name}}
-                </a>
-            </div>
-        </ion-content>
+        <body>
+        <pane>
+
+            <content has-header="true"  padding="true" on-infinite-scroll="addMoreItem">
+                <div class=" list padding">
+                    <div ng-repeat="item in items | limitTo:numberOfItemsToDisplay" class="item" type="item-text-wrap">
+                        <h3>{{item}}</h3>
+                    </div>
+                </div>
+            </content>
+        </pane>
+        </body>
     </div>
 </script>
